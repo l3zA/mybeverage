@@ -1,0 +1,32 @@
+extends ../layout
+
+block title
+  = `New Drink`
+
+block content
+  h1.title New drink
+
+  a.button.is-info(href=`/drinks`) Back to drinks
+
+  form(action="/drinks", method="POST")
+    .field
+      .control
+        -var selected = true;
+          select(name="category",required=required)
+              each op in categories
+                  option(value=op.name selected=selected) #{op.name}
+                  -if(selected){
+                      -selected=false;
+                  -}
+    .field
+      .control 
+        input.input(name="name", placeholder="Drink name")/
+    .field
+      .control 
+        input.input(name="imageUrl", placeholder="Image url")/
+    .field
+      .control 
+        input.input(name="comment", placeholder="Comment")/
+    .field
+      .control
+        button.button.is-link.is-fullwidth Save

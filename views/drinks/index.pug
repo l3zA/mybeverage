@@ -1,0 +1,41 @@
+extends ../layout
+
+block title
+  = `Drinks`
+
+block content
+  h1.title Drinks
+
+  .column
+    a.button.is-link(href=`/categories`) Categories
+
+  .column
+    a.button.is-primary(href=`/drinks/new`) New drink
+
+  .column
+    form(action="/drinks/search" method="POST")
+      .field.has-addons
+        .control
+          input.input(name="q" type="text" placeholder="Find a drinks")
+        .control
+          button.button.is-info(type="submit") Search
+  #list
+    - if(drinks.length > 0)
+      - for (let i = 0; i < drinks.length; i +=1)
+        .column
+          h4= `${drinks[i].category}`
+            .card
+              a(href=`/drinks/${drinks[i].id}/edit`)
+                header.card-header 
+                  p.card-header-title
+                    = drinks[i].name
+              button.delete.close(onClick=`if(confirm("Are your sure?")){ document.getElementById("id").value = ${drinks[i].id};document.getElementById("deleteForm").action = "/drinks/${drinks[i].id}?_method=DELETE";document.getElementById("deleteForm").submit(); }`)
+    - else
+      .column
+        .card
+          header.card-header
+            p.card-header-title No drink!
+
+  form(action=`/drinks/${id}?_method=DELETE`, method="POST", id="deleteForm")
+    input.is-invisible.input(id="id" name="id", value=`${id}`)/
+      

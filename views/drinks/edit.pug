@@ -1,0 +1,39 @@
+extends ../layout
+
+block title
+  = `Update Drink`
+
+block content
+  
+  h1.title Update drink
+
+  a.button.is-info(href=`/drinks`) Back to drinks
+
+  form(action=`/drinks/${id}?_method=PUT`, method="POST")
+    .field
+      .control
+        -var selected = true;
+          select(name="category",required=required)
+              each op in categories
+                  option(value=op.name selected=category) #{op.name}
+                  -if(selected){
+                      -selected=false;
+                  -}
+    .field
+      .control 
+        input.input(name="name", value=`${name}`, placeholder="Drink name")/
+    .field
+      .control 
+        input.input(name="imageUrl", placeholder="Image url")/
+    .field
+      .control 
+        input.input(name="comment", placeholder="Comment")/
+    .field
+      .control
+        button.button.is-link.is-fullwidth Update
+  .field
+    .control
+      button.button.is-link.is-fullwidth(onClick='if(confirm("Are your sure?")){document.getElementById("deleteForm").submit();}') Delete
+
+  form(action=`/drinks/${id}?_method=DELETE`, method="POST", id="deleteForm")
+    input.is-invisible.input(name="id", value=`${id}`)/
