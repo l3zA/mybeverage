@@ -1,0 +1,16 @@
+extends ../layout
+
+block title
+  = `Category id ${id}`
+
+block content
+  .column
+    a.button.is-info(href=`/categories`) Back to categories
+
+  #list
+    .column
+      h4= `${user}`
+      .card
+        header.card-header 
+          p.card-header-title
+            = name

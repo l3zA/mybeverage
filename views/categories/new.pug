@@ -1,0 +1,18 @@
+extends ../layout
+
+block title
+  = `New Category`
+
+block content
+  h1.title New Category
+
+  .column
+    a.button.is-info(href=`/categories`) Back to categories
+
+  form(action="/categories", method="POST")
+    .field
+      .control 
+        input.input(name="name", placeholder="Category name")/
+    .field
+      .control
+        button.button.is-link.is-fullwidth Save

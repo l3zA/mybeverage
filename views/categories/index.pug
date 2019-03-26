@@ -1,0 +1,32 @@
+extends ../layout
+
+block title
+  = `Categories`
+
+block content
+  h1.title Categories
+
+  .column
+    a.button.is-link(href=`/drinks`) Drinks
+
+  .column
+    a.button.is-primary(href=`/categories/new`) New Category
+
+  #list
+    - if(categories.length > 0)
+      - for (let i = 0; i < categories.length; i +=1)
+          .column
+            .card
+              a(href=`/categories/${categories[i].id}/edit`)
+                header.card-header 
+                  p.card-header-title
+                    = categories[i].name
+              button.delete.close(onClick=`if(confirm("Are your sure?")){ document.getElementById("id").value = ${categories[i].id};document.getElementById("deleteForm").action = "/categories/${categories[i].id}?_method=DELETE";document.getElementById("deleteForm").submit(); }`)
+    - else
+      .column
+        .card
+          header.card-header
+            p.card-header-title No Category!
+
+  form(action=`/categories/${id}?_method=DELETE`, method="POST", id="deleteForm")
+    input.is-invisible.input(id="id" name="id", value=`${id}`)/        

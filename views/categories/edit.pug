@@ -1,0 +1,27 @@
+extends ../layout
+
+block title
+  = `Update Category`
+
+block content
+  
+  h1.title Update Category
+
+  .column
+    a.button.is-info(href=`/categories`) Back to categories
+
+  .column  
+    form(action=`/categories/${id}?_method=PUT`, method="POST")
+      .field
+        .control 
+          input.input(name="name", value=`${name}`, placeholder="Category name")/
+      .field
+        .control
+          button.button.is-link.is-fullwidth Update
+    .field
+      .control
+        button.button.is-link.is-fullwidth(onClick='if(confirm("Are your sure?")){document.getElementById("deleteForm").submit();}') Delete
+
+  .column
+    form(action=`/categories/${id}?_method=DELETE`, method="POST", id="deleteForm")
+      input.is-invisible.input(name="id", value=`${id}`)/
