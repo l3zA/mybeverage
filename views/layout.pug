@@ -1,0 +1,15 @@
+html
+  head
+    title 
+      block title
+    include head
+  body
+    - if(!loginPage)
+      include nav
+    main.container.is-fluid
+      .section.backgroud
+        .columns
+          .column
+          .column
+            block content
+          .column
