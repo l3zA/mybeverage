@@ -1,0 +1,10 @@
+body {
+  background-color: #e6ecf0 !important;
+}
+
+button.close{
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: red;
+}
