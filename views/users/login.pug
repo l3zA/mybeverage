@@ -1,0 +1,21 @@
+extends ../layout
+
+block title
+  = `Login`
+
+block content
+  h1.title Login
+    form(action="/users/session", method="POST")
+      - if(typeof error != 'undefined' && error != '')
+          .notification.is-danger
+            = `${error}`
+      .field
+        .control 
+          input.input(name="username", placeholder="Username")/
+      .field
+        .control 
+          input.input(name="password", placeholder="Password", type="password")/
+      .field
+        .control
+          button.button.is-link.is-fullwidth Login
+      a(href=`/users/sign_up`) Sign Up
